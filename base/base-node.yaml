@@ -94,14 +94,14 @@ spec:
     # - localhost,host.containers.internal
     # - --authrpc.vhosts
     # - localhost,host.containers.internal
-  - command: 
-    - /data/geth-entrypoint
-    envFrom:
+  - name: op-geth
+    command: ['sh', '-c', 'cd /data && sh ./geth-entrypoint']
+    # command: ['pwd'] # while we are just testing op-node, do nothing here
+    envFrom: 
     - configMapRef:
         name: base-node-config
 
     image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101105.3
-    name: op-geth
     ports:
     - containerPort: 8545
     - containerPort: 8546
@@ -113,8 +113,8 @@ spec:
     volumeMounts:
     - mountPath: /data
       name: op-geth-vol-1
-  - command:
-    - /data/op-node-entrypoint
+  - name: op-node
+    command: ['sh', '-c', 'cd /data && sh ./op-node-entrypoint']
   # - args:
   #   - --l1
   #   - https://eth-mainnet.g.alchemy.com/v2/hlnAhv-Jx2mCmUuusgTvsrdOelOSRbl9
@@ -142,7 +142,6 @@ spec:
     - configMapRef:
         name: base-node-config
     image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.1.0
-    name: op-node
     ports:
     - containerPort: 9545
     - containerPort: 9222
