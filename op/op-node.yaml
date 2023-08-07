@@ -1,0 +1,156 @@
+
+########## kubernets file for podman ###########
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2023-08-04T21:07:07Z"
+  labels:
+    app: op-node-pod
+  name: op-node-pod
+spec:
+  ports:
+  - name: "8545"
+    nodePort: 30947
+    port: 8545
+    targetPort: 8545
+  - name: "8546"
+    nodePort: 31577
+    port: 8546
+    targetPort: 8546
+  - name: "8551"
+    nodePort: 31194
+    port: 8551
+    targetPort: 8551
+  - name: "30303"
+    nodePort: 31815
+    port: 30303
+    targetPort: 30303
+  - name: "30303"
+    nodePort: 30405
+    port: 30303
+    protocol: UDP
+    targetPort: 30303
+  - name: "9000"
+    nodePort: 30922
+    port: 9000
+    targetPort: 9000
+  - name: "9000"
+    nodePort: 31409
+    port: 9000
+    protocol: UDP
+    targetPort: 9000
+  - name: "5052"
+    nodePort: 32178
+    port: 5052
+    targetPort: 5052
+  - name: "9545"
+    nodePort: 30946
+    port: 9545
+    targetPort: 9545
+  - name: "9003"
+    nodePort: 30945
+    port: 9003
+    targetPort: 9003
+  - name: "9003"
+    nodePort: 30944
+    port: 9003
+    protocol: UDP
+    targetPort: 9003
+  selector:
+    app: op-node-pod
+  type: NodePort
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2023-08-04T21:07:07Z"
+  labels:
+    app: op-node-pod
+  name: op-node-pod
+spec:
+  containers:
+  # todo, change to command: geth ...?
+  - args:
+    - --http.addr
+    - 0.0.0.0
+    - --http.port
+    - 8545
+    - --authrpc.addr
+    - 0.0.0.0
+    - --authrpc.jwtsecret
+    - /root/.ethereum/jwtsecret
+    - --ipcdisable
+    - --http
+    - --http.corsdomain
+    - http://localhost
+    - --http.vhosts
+    - localhost,host.containers.internal
+    - --authrpc.vhosts
+    - localhost,host.containers.internal
+    envFrom:
+    - configMapRef:
+        name: base-node-config
+    command: 
+    - geth
+    image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101105.3
+    name: op-geth
+    ports:
+    - containerPort: 8545
+    - containerPort: 8546
+    - containerPort: 8551
+    # not needed, yet? p2p discovery
+    - containerPort: 30303
+    - containerPort: 30303
+      protocol: UDP
+    volumeMounts:
+    - mountPath: /root/.ethereum
+      name: home-johns-.config-NiceNode-nodes-geth-1691188259-host-0
+  - args:
+    - --l1
+    - https://eth-mainnet.g.alchemy.com/v2/hlnAhv-Jx2mCmUuusgTvsrdOelOSRbl9
+    - --l2
+    - http://op-geth:8551
+    - --rpc.addr
+    - 0.0.0.0
+    - --rpc.port
+    - 9545
+    - --l1.trustrpc
+    - --l2.jwt-secret
+    - /root/.ethereum/jwtsecret
+    # - --authrpc.addr
+    # - 0.0.0.0
+    # - --ipcdisable
+    # - --p2p.disable
+    # - --http
+    # - --http.corsdomain
+    # - http://localhost
+    # - --http.vhosts
+    # - localhost,host.containers.internal
+    # - --authrpc.vhosts
+    # - localhost,host.containers.internal
+    envFrom:
+    - configMapRef:
+        name: base-node-config
+    command: 
+      - op-node
+    image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.1.0
+    name: op-node
+    ports:
+    - containerPort: 9545
+    - containerPort: 9003
+    - containerPort: 9003
+      protocol: UDP
+    volumeMounts:
+    - mountPath: /root/.ethereum
+      name: home-johns-.config-NiceNode-nodes-lighthouse-beacon-1691181297-host-0
+  restartPolicy: OnFailure
+  volumes:
+  - hostPath:
+      path: /home/johns/.config/NiceNode/nodes/geth-1691188259
+      type: Directory
+    name: home-johns-.config-NiceNode-nodes-geth-1691188259-host-0
+  - hostPath:
+      path: /home/johns/.config/NiceNode/nodes/lighthouse-beacon-1691181297
+      type: Directory
+    name: home-johns-.config-NiceNode-nodes-lighthouse-beacon-1691181297-host-0

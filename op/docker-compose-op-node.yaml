@@ -1,0 +1,35 @@
+
+########## compose file ###########
+op-geth:
+  image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101105.3
+  restart: unless-stopped
+  stop_grace_period: 5m
+  entrypoint: /scripts/start-op-geth.sh
+  env_file:
+    - ./envs/${NETWORK_NAME}/op-geth.env
+    - .env
+  volumes:
+    - ./scripts/:/scripts
+    - shared:/shared
+    - op_geth:/geth
+  ports:
+    - ${PORT__OP_GETH_HTTP:-9993}:8545
+    - ${PORT__OP_GETH_WS:-9994}:8546
+  profiles:
+    - current
+
+op-node:
+  image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.1.0
+  restart: unless-stopped
+  stop_grace_period: 5m
+  entrypoint: /scripts/start-op-node.sh
+  env_file:
+    - .env
+  volumes:
+    - ./scripts/:/scripts
+    - shared:/shared
+  ports:
+    - ${PORT__OP_NODE_P2P:-9003}:9003/udp
+    - ${PORT__OP_NODE_P2P:-9003}:9003/tcp
+  profiles:
+    - current
