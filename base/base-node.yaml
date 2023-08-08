@@ -57,6 +57,15 @@ spec:
     port: 9003
     protocol: UDP
     targetPort: 9003
+  - name: "9222"
+    nodePort: 30000
+    port: 9222
+    targetPort: 9222
+  - name: "9222"
+    nodePort: 30001
+    port: 9222
+    protocol: UDP
+    targetPort: 9222
   selector:
     app: base-node-pod
   type: NodePort
