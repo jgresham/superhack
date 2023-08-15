@@ -1,0 +1,24 @@
+{
+    "genesis":{
+    "l1":{
+       "hash":"0xb0bbb79a00fb8485185b1bedfac386812d662e1cddba77b67a26e1ed9ba8f0ec",
+       "number":7568910
+    },
+    "l2":{
+       "hash":"0x6758307d692d4f2f6650acd3762674749a0c1cc2530b9b481845d0f8ee1bd456",
+       "number":0
+    },
+    "l2_time":1662857796
+ },
+ "block_time":2,
+ "max_sequencer_drift":120,
+ "seq_window_size":120,
+ "channel_timeout":30,
+ "l1_chain_id":5,
+ "l2_chain_id":28528,
+ "p2p_sequencer_address":"0x59dc8e68a80833cc8a9592d532fed42374c8b5dc",
+ "fee_recipient_address":"0xdffc6a1c238ff9504b055ad7efeee0148f2d62bd",
+ "batch_inbox_address":"0xfeb2acb903f95fb5f5497157c0727a7d16e3fd16",
+ "batch_sender_address":"0x4ff79526ea1d492a3db2aa210d7318ff13f2012c",
+ "deposit_contract_address":"0xa581ca3353db73115c4625ffc7adf5db379434a8"
+}

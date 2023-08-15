@@ -1,0 +1,32 @@
+apiVersion: v1
+data:
+  OP_GETH_SEQUENCER_HTTP: https://mainnet-sequencer.optimism.io
+  OP_NODE_L1_ETH_RPC: https://rpc.ankr.com/eth/dad08a52532c3ba95852d049c507b1d83aa8ab3d201744b7116abd6098964843
+  OP_NODE_L1_TRUST_RPC: true
+  OP_NODE_L2_ENGINE_AUTH: /jwtsecret
+  OP_NODE_L2_ENGINE_AUTH_RAW: 0x9e4112e049104032a66cd2ee34bee877f5f7efc7a91ef1eb35d8fce94f0cb59d
+  OP_NODE_L2_ENGINE_RPC: http://op-geth:8552
+  OP_NODE_LOG_LEVEL: info
+  # OP_NODE_P2P_AGENT: base
+  # OP_NODE_P2P_BOOTNODES: enr:-J24QNz9lbrKbN4iSmmjtnr7SjUMk4zB7f1krHZcTZx-JRKZd0kA2gjufUROD6T3sOWDVDnFJRvqBBo62zuF-hYCohOGAYiOoEyEgmlkgnY0gmlwhAPniryHb3BzdGFja4OFQgCJc2VjcDI1NmsxoQKNVFlCxh_B-716tTs-h1vMzZkSs1FTu_OYTNjgufplG4N0Y3CCJAaDdWRwgiQG,enr:-J24QH-f1wt99sfpHy4c0QJM-NfmsIfmlLAMMcgZCUEgKG_BBYFc6FwYgaMJMQN5dsRBJApIok0jFn-9CS842lGpLmqGAYiOoDRAgmlkgnY0gmlwhLhIgb2Hb3BzdGFja4OFQgCJc2VjcDI1NmsxoQJ9FTIv8B9myn1MWaC_2lJ-sMoeCDkusCsk4BYHjjCq04N0Y3CCJAaDdWRwgiQG,enr:-J24QDXyyxvQYsd0yfsN0cRr1lZ1N11zGTplMNlW4xNEc7LkPXh0NAJ9iSOVdRO95GPYAIc6xmyoCCG6_0JxdL3a0zaGAYiOoAjFgmlkgnY0gmlwhAPckbGHb3BzdGFja4OFQgCJc2VjcDI1NmsxoQJwoS7tzwxqXSyFL7g0JM-KWVbgvjfB8JA__T7yY_cYboN0Y3CCJAaDdWRwgiQG,enr:-J24QHmGyBwUZXIcsGYMaUqGGSl4CFdx9Tozu-vQCn5bHIQbR7On7dZbU61vYvfrJr30t0iahSqhc64J46MnUO2JvQaGAYiOoCKKgmlkgnY0gmlwhAPnCzSHb3BzdGFja4OFQgCJc2VjcDI1NmsxoQINc4fSijfbNIiGhcgvwjsjxVFJHUstK9L1T8OTKUjgloN0Y3CCJAaDdWRwgiQG,enr:-J24QG3ypT4xSu0gjb5PABCmVxZqBjVw9ca7pvsI8jl4KATYAnxBmfkaIuEqy9sKvDHKuNCsy57WwK9wTt2aQgcaDDyGAYiOoGAXgmlkgnY0gmlwhDbGmZaHb3BzdGFja4OFQgCJc2VjcDI1NmsxoQIeAK_--tcLEiu7HvoUlbV52MspE0uCocsx1f_rYvRenIN0Y3CCJAaDdWRwgiQG
+  OP_NODE_P2P_LISTEN_IP: 0.0.0.0
+  OP_NODE_P2P_LISTEN_TCP_PORT: "9000"
+  OP_NODE_P2P_LISTEN_UDP_PORT: "9000"
+  # OP_NODE_ROLLUP_CONFIG: mainnet/rollup.json
+  OP_NODE_RPC_ADDR: 0.0.0.0
+  OP_NODE_RPC_PORT: "9547"
+  OP_NODE_SNAPSHOT_LOG: /tmp/op-node-snapshot-log
+  OP_NODE_VERIFIER_L1_CONFS: "4"
+  # Bedrock
+  # NETWORK_NAME: mainnet
+  NODE_TYPE: full
+  # BEDROCK_SOURCE: download
+  OP_NODE__RPC_ENDPOINT: https://eth-mainnet.g.alchemy.com/v2/hlnAhv-Jx2mCmUuusgTvsrdOelOSRbl9
+  OP_NODE__RPC_TYPE: basic
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2023-08-07T18:56:12Z"
+  name: optimism-node-config
+  namespace: default
+  resourceVersion: "4149"
+  uid: 85548f79-a12a-48d7-ac19-4c2e86e64c6a

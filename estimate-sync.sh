@@ -1,9 +1,11 @@
 #! /usr/bin/bash
 
-export ETH_RPC_URL=http://localhost:8545
+export ETH_RPC_URL=http://localhost:8543
+echo `cast block latest -f number`
 T0=`cast block latest -f number` ; sleep 60 ; T1=`cast block latest -f number`
 PER_MIN=`expr $T1 - $T0`
 echo Blocks per minute: $PER_MIN
+echo `cast block latest -f number`
 
 if [ $PER_MIN -eq 0 ]; then
     echo Not synching or keeping up with head of the chain
