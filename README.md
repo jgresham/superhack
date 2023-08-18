@@ -13,7 +13,7 @@ helpful commands
 `ppl`
 `pp rm op-node-pod -f`
 
-op-node cli flags
+# op-node settings
 ```
 podman run us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.1.1 op-node --help
 NAME:
@@ -96,7 +96,7 @@ GLOBAL OPTIONS:
    --version, -v                               print the version
 ```
 
-op-geth cli flags
+# op-geth settings
 ```
 podman run us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101106.0 --help
 NAME:
